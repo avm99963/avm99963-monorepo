@@ -1,0 +1,11 @@
+/* Complements the styles in /common/archive_styles.css. */
+@media screen, projection {
+  :root {
+    --archive-banner-text: "This site is an old friend from the past, kept in its original form. Enjoy! \A NOTE: The names/years of the nodes in the graph have been anonymized.";
+    --archive-z-index: 90;
+  }
+
+  body:has(.md-google-search__metacontainer[style*="display: block;"]):before {
+    --archive-banner-top: 58px !important;
+  }
+}

@@ -6,7 +6,10 @@ filegroup(
     name = "src",
     srcs = glob(
         ["**/*"],
-        exclude = ["BUILD.bazel"],
+        exclude = [
+            "BUILD.bazel",
+            "**/README.md",
+        ],
     ),
 )
 
