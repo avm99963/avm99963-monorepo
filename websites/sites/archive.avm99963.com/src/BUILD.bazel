@@ -1,0 +1,21 @@
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("@bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+
+filegroup(
+    name = "src",
+    srcs = glob(
+        ["**/*"],
+        exclude = ["BUILD.bazel"],
+    ),
+    visibility = [
+        "//websites/sites/archive.avm99963.com/server:__subpackages__",
+    ],
+)
+
+copy_to_bin(
+    name = "src_bin",
+    srcs = ["src"],
+    visibility = [
+        "//websites/sites/archive.avm99963.com:__pkg__",
+    ],
+)

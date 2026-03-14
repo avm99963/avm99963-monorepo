@@ -1,0 +1,45 @@
+@media screen, projection {
+  body:before {
+    --_margin: var(--archive-banner-margin, 5px);
+
+    content: var(
+      --archive-banner-text,
+      "This site is an old friend from the past, kept in its original form. Enjoy!"
+    ) !important;
+
+    box-sizing: border-box !important;
+    position: fixed !important;
+    width: 40% !important;
+    top: calc(var(--archive-banner-top, 0px) + var(--_margin)) !important;
+    left: 30% !important;
+    right: 30% !important;
+    padding: 8px !important;
+    border: 1px solid #f0c36d !important;
+    border-radius: 2px !important;
+    margin: 0 !important;
+    z-index: var(--archive-z-index, 99963) !important;
+
+    opacity: 0.9 !important;
+    color: #000 !important;
+    background: #f9edbe !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14) !important;
+
+    font-family: arial, sans-serif !important;
+    font-size: 11px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    white-space: pre-line;
+
+    @media (450px < width <= 700px) {
+      width: 70% !important;
+      left: 15% !important;
+      right: 15% !important;
+    }
+
+    @media (width <= 450px) {
+      width: calc(100% - 2 * var(--_margin)) !important;
+      left: var(--_margin) !important;
+      right: var(--_margin) !important;
+    }
+  }
+}

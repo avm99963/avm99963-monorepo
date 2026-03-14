@@ -1,0 +1,6 @@
+load("@npm//:http-server/package_json.bzl", http_server_bin = "bin")
+
+http_server_bin.http_server_binary(
+    name = "http_server",
+    visibility = ["//websites/sites:__subpackages__"],
+)

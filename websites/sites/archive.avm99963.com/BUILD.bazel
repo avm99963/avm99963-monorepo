@@ -1,0 +1,11 @@
+load("@aspect_rules_js//js:defs.bzl", "js_run_devserver")
+
+js_run_devserver(
+    name = "serve",
+    args = ["./websites/sites/archive.avm99963.com/src/"],
+    data = ["//websites/sites/archive.avm99963.com/src:src_bin"],
+    tool = "//websites/tools:http_server",
+    visibility = [
+        "//websites/sites/archive.avm99963.com:__pkg__",
+    ],
+)
