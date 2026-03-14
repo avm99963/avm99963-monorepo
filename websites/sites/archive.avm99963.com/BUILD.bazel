@@ -9,3 +9,8 @@ js_run_devserver(
         "//websites/sites/archive.avm99963.com:__pkg__",
     ],
 )
+
+alias(
+    name = "push_image",
+    actual = "//websites/sites/archive.avm99963.com/server:push_image",
+)

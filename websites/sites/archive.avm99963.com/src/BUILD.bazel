@@ -1,5 +1,6 @@
 load("@aspect_rules_js//js:defs.bzl", "js_library")
 load("@bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@rules_pkg//pkg:mappings.bzl", "pkg_files")
 
 filegroup(
     name = "src",
@@ -7,6 +8,12 @@ filegroup(
         ["**/*"],
         exclude = ["BUILD.bazel"],
     ),
+)
+
+pkg_files(
+    name = "pkg_files",
+    srcs = [":src"],
+    strip_prefix = "/websites/sites/archive.avm99963.com/src",
     visibility = [
         "//websites/sites/archive.avm99963.com/server:__subpackages__",
     ],

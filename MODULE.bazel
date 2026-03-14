@@ -3,6 +3,7 @@ bazel_dep(name = "bazel_lib", version = "3.2.2")
 bazel_dep(name = "bazelrc-preset.bzl", version = "1.9.2")
 bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rules_img", version = "0.3.6")
+bazel_dep(name = "rules_pkg", version = "1.1.0")
 
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
 npm.npm_translate_lock(

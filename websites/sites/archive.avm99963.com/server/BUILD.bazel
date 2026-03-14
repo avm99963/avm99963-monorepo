@@ -1,0 +1,82 @@
+load("@rules_img//img:image.bzl", "image_index", "image_manifest")
+load("@rules_img//img:layer.bzl", "file_metadata", "image_layer", "layer_from_tar")
+load("@rules_img//img:load.bzl", "image_load")
+load("@rules_img//img:push.bzl", "image_push")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+
+image_layer(
+    name = "lighttpd_config",
+    srcs = {
+        "/lighttpd.conf": ":lighttpd.conf",
+    },
+    default_metadata = file_metadata(
+        gid = 0,
+        mode = "0444",
+        uid = 0,
+    ),
+)
+
+# We package the site first because of issue
+# https://github.com/bazel-contrib/rules_img/issues/370.
+#
+# Ideally, we should strive to use rules_pkg manifests instead when
+# https://github.com/bazel-contrib/rules_img/issues/188 is done.
+pkg_tar(
+    name = "site_tar",
+    srcs = ["//websites/sites/archive.avm99963.com/src:pkg_files"],
+    mode = "0444",
+    owner = "0.0",  # Maps to uid=0, gid=0
+    package_dir = "/var/www",
+)
+
+layer_from_tar(
+    name = "site_layer",
+    src = ":site_tar",
+)
+
+image_manifest(
+    name = "image",
+    base = "@lighttpd_image",
+    layers = [
+        ":lighttpd_config",
+        ":site_layer",
+    ],
+)
+
+image_index(
+    name = "server",
+    annotations = {
+        "org.opencontainers.image.title": "archive.avm99963.com",
+        "org.opencontainers.image.description": "Container image for my archive website.",
+        "org.opencontainers.image.source": "https://gerrit.avm99963.com/plugins/gitiles/avm99963-monorepo/+/HEAD/websites/sites/archive.avm99963.com",
+    },
+    manifests = [":image"],
+    platforms = [
+        "//tools/platforms:linux_amd64",
+        "//tools/platforms:linux_arm64",
+        # TODO: Adding this results in a build error. Troubleshoot why and fix it.
+        #"//tools/platforms:linux_arm_v7",
+    ],
+)
+
+image_push(
+    name = "push_image",
+    image = ":server",
+    registry = "docker-registry.corp.avm99963.com",
+    repository = "archive.avm99963.com",
+    tag_list = [
+        "latest",
+        "{{if .STABLE_REVISION}}v0.0.{{.STABLE_REVISION}}{{else}}{{end}}",
+    ],
+    visibility = [
+        "//websites/sites/archive.avm99963.com:__pkg__",
+    ],
+)
+
+# Rule for local testing
+image_load(
+    name = "load_image",
+    daemon = "auto",
+    image = ":image",
+    tag = "archive-avm99963-com-server:bazel-debug",
+)
