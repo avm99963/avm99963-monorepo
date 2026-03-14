@@ -1,0 +1,28 @@
+bazel_dep(name = "aspect_rules_js", version = "3.0.3")
+bazel_dep(name = "bazel_lib", version = "3.2.2")
+bazel_dep(name = "bazelrc-preset.bzl", version = "1.9.2")
+bazel_dep(name = "platforms", version = "1.0.0")
+bazel_dep(name = "rules_img", version = "0.3.6")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(
+    name = "npm",
+    pnpm_lock = "//:pnpm-lock.yaml",
+)
+use_repo(npm, "npm")
+
+# Allows developers to use the matching pnpm version, for example:
+# bazel run -- @pnpm --dir $(pwd) install
+pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm", dev_dependency = True)
+use_repo(pnpm, "pnpm")
+
+pull = use_repo_rule("@rules_img//img:pull.bzl", "pull")
+
+# renovate-handled:
+pull(
+    name = "lighttpd_image",
+    digest = "sha256:b323c99992cb41696f3f910b52249f70891414e20f7faca71294aa5094a37215",
+    registry = "docker-registry.corp.avm99963.com",
+    repository = "unrestricted/lighttpd",
+    tag = "latest",
+)

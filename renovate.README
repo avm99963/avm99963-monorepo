@@ -1,0 +1,3 @@
+In the custom manager for renovate-handled images, it is infeasible to handle
+in the regex all orderings of the rule attributes, so we do it in the
+alphabetical order, as formatted by Bazel

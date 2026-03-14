@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "renovate": "^43.73.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": []
+  }
+}

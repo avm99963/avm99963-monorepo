@@ -1,0 +1,10 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//:renovate/package_json.bzl", renovate_bin = "bin")
+
+npm_link_all_packages()
+
+renovate_bin.renovate_config_validator_test(
+    name = "renovate_config_test",
+    size = "small",
+    data = [":renovate.json"],
+)

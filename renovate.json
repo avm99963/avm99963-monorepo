@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>renovate-presets"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^MODULE.bazel$/"
+      ],
+      "matchStrings": [
+        "#\\s*renovate-handled:\\s+pull\\(\\s*name = \"(?<nameAttr>[^\"]+)\",\\s*digest = \"(?<currentDigest>sha256:[a-f0-9]+)\",\\s*registry = \"(?<registry>[^\"]+)\",\\s*repository = \"(?<repositoryAttr>[^\"]+)\",\\s*tag = \"(?<currentValue>[^\"]+)\",\\s*\\)"
+      ],
+      "depNameTemplate": "{{{repositoryAttr}}}/{{{nameAttr}}}",
+      "versioningTemplate": "docker",
+      "datasourceTemplate": "docker"
+    }
+  ]
+}
