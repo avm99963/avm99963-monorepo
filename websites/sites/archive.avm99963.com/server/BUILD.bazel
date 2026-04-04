@@ -64,6 +64,7 @@ image_push(
     image = ":server",
     registry = "docker-registry.corp.avm99963.com",
     repository = "archive.avm99963.com",
+    stamp = "enabled",
     tag_list = [
         "latest",
         "{{if .STABLE_REVISION}}v0.0.{{.STABLE_REVISION}}{{else}}{{end}}",
@@ -76,7 +77,6 @@ image_push(
 # Rule for local testing
 image_load(
     name = "load_image",
-    daemon = "auto",
     image = ":image",
     tag = "archive-avm99963-com-server:bazel-debug",
 )
