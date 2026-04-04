@@ -1,0 +1,3 @@
+targets: "//..."
+is_release: False
+zuul_work_dir: "{{ zuul.project.src_dir }}"
