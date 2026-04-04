@@ -16,5 +16,8 @@
       "versioningTemplate": "docker",
       "datasourceTemplate": "docker"
     }
+  ],
+  "ignorePaths": [
+    "websites/sites/archive.avm99963.com/src/**"
   ]
 }
