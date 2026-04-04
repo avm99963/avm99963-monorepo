@@ -49,6 +49,10 @@ image_index(
         "org.opencontainers.image.title": "archive.avm99963.com",
         "org.opencontainers.image.description": "Container image for my archive website.",
         "org.opencontainers.image.source": "https://gerrit.avm99963.com/plugins/gitiles/avm99963-monorepo/+/HEAD/websites/sites/archive.avm99963.com",
+        "org.opencontainers.image.authors": "Adrià Vilanova Martínez (avm99963)",
+        "org.opencontainers.image.version": "{{if .STABLE_REVISION}}v0.0.{{.STABLE_REVISION}}{{else}}{{end}}",
+        "org.opencontainers.image.revision": "{{if and .STABLE_GIT_COMMIT (eq .STABLE_GIT_DIRTY \"clean\")}}{{.STABLE_GIT_COMMIT}}{{else}}{{end}}",
+        "org.opencontainers.image.created": "{{if .FORMATTED_DATE_RFC3339}}{{.FORMATTED_DATE_RFC3339}}{{end}}",
     },
     manifests = [":image"],
     platforms = [
