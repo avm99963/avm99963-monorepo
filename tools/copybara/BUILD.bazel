@@ -1,0 +1,11 @@
+load("@rules_java//java:java_binary.bzl", "java_binary")
+
+# As per
+# https://github.com/google/copybara/blob/eb3a1fdb338a90be30cc8b457edc51f9aed268a8/README.md#using-pre-built-copybara-in-bazel.
+
+java_binary(
+    name = "copybara",
+    main_class = "com.google.copybara.Main",
+    visibility = ["//:__subpackages__"],
+    runtime_deps = ["@com_github_google_copybara//jar"],
+)

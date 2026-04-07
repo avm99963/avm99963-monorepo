@@ -2,6 +2,9 @@
 import %workspace%/tools/preset.bazelrc
 
 common --repo_env=DO_NOT_TRACK=true
+# As per
+# https://github.com/google/copybara/blob/eb3a1fdb338a90be30cc8b457edc51f9aed268a8/README.md#using-pre-built-copybara-in-bazel
+run --java_runtime_version=remotejdk_21
 
 common:ci --test_env=CI=true
 # This simplifies our log in CI. curses is not useful since we can't view live

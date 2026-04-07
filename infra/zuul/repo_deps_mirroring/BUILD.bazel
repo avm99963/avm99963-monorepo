@@ -1,0 +1,11 @@
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+
+sh_binary(
+    name = "mirror",
+    srcs = ["mirror.sh"],
+    data = [
+        "copy.bara.sky",
+        "//tools/copybara",
+    ],
+    use_bash_launcher = True,
+)

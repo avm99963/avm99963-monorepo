@@ -1,0 +1,22 @@
+core.workflow(
+    name = "mirror_zuul_jobs",
+    description = "Workflow that mirrors the upstream Zuul Jobs repository to our mirror.",
+    origin = git.origin(
+        url = "https://opendev.org/zuul/zuul-jobs.git",
+        ref = "HEAD",
+        submodules = "NO",
+    ),
+    destination = git.destination(
+        url = "https://gerrit.avm99963.com/a/third_party/opendev-zuul-jobs",
+        push = "master",
+    ),
+    mode = "SQUASH",
+    origin_files = glob(["**"]),
+    authoring = authoring.pass_thru("Copybara bot <copybara-bot@avm99963.com>"),
+    transformations = [
+        metadata.remove_label("Change-Id"),
+        metadata.squash_notes(),
+    ],
+)
+
+# vim: set ft=bzl:
