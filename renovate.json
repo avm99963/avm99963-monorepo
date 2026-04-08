@@ -1,7 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>renovate-presets"
+    "local>renovate-presets",
+    ":pinAllExceptPeerDependencies"
   ],
   "customManagers": [
     {
