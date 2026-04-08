@@ -10,7 +10,21 @@
     roles:
       - zuul: zuul/jobs
 
+- job:
+    name: avm99963-monorepo-mirror-zuul-repo-deps
+    description: Runs the Copybara migrations to mirror Zuul repo third-party dependencies.
+    pre-run: playbooks/mirror-zuul-repo-deps/pre.yaml
+    run: playbooks/mirror-zuul-repo-deps/run.yaml
+    parent: copybara-base
+    nodeset:
+      nodes:
+        - name: ubuntu-focal
+          label: ubuntu-focal
+
 - project:
     check:
       jobs:
         - avm99963-monorepo-check
+    nightly-build:
+      jobs:
+        - avm99963-monorepo-mirror-zuul-repo-deps

@@ -1,0 +1,6 @@
+- name: Mirror Zuul Jobs repository
+  ansible.builtin.shell: |
+    export PATH="{{ ansible_user_dir }}/.local/bin:$PATH"
+    bazelisk run //infra/zuul/repo_deps_mirroring:mirror -- mirror_zuul_jobs
+  args:
+    chdir: '{{ zuul_work_dir }}'
