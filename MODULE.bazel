@@ -24,9 +24,9 @@ pull = use_repo_rule("@rules_img//img:pull.bzl", "pull")
 # renovate-handled:
 pull(
     name = "lighttpd_image",
-    digest = "sha256:b323c99992cb41696f3f910b52249f70891414e20f7faca71294aa5094a37215",
-    registry = "docker-registry.corp.avm99963.com",
-    repository = "unrestricted/lighttpd",
+    digest = "sha256:b3bcd07d219fd54625b79613102d8d1f9ca45bb2246d9c9f767a482f44573ebf",
+    registry = "ghcr.io",
+    repository = "avm99963/lighttpd",
     tag = "latest",
 )
 
