@@ -30,6 +30,13 @@ can also be manually run:
 bazel run //infra/zuul/repo_deps_mirroring:mirror -- WORKFLOW_NAME
 ```
 
+If running locally, you will need to use a HTTP password or set the following
+git configuration so that you can authenticate via SSH:
+
+```bash
+git config --global url."ssh://gerrit.avm99963.com:29418/".insteadOf "https://gerrit.avm99963.com/a/"
+```
+
 ## Testing a migration
 
 Running the following command will output the result of the migration to a
