@@ -1,8 +1,19 @@
 load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 sh_binary(
     name = "mirror",
     srcs = ["mirror.sh"],
+    data = [
+        "copy.bara.sky",
+        "//tools/copybara",
+    ],
+    use_bash_launcher = True,
+)
+
+sh_test(
+    name = "copybara_validation_test",
+    srcs = ["copybara_validation_test.sh"],
     data = [
         "copy.bara.sky",
         "//tools/copybara",
