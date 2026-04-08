@@ -20,5 +20,14 @@
   ],
   "ignorePaths": [
     "websites/sites/archive.avm99963.com/src/**"
-  ]
+  ],
+  "postUpgradeTasks": {
+    "commands": [
+      "bazel mod deps --lockfile_mode=update",
+      "bazel mod tidy",
+      "bazel run //tools:preset.update"
+    ],
+    "fileFilters": ["MODULE.bazel.lock", "tools/preset.bazelrc"],
+    "executionMode": "branch"
+  }
 }
