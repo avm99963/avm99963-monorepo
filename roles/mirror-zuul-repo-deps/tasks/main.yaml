@@ -4,3 +4,7 @@
     bazelisk run //infra/zuul/repo_deps_mirroring:mirror -- mirror_zuul_jobs
   args:
     chdir: '{{ zuul_work_dir }}'
+  register: result
+  # Exit status 4 means NO_OP:
+  # https://github.com/google/copybara/blob/e4b9e9d06f29d55912013a866110c7e82be63ce9/java/com/google/copybara/util/ExitCode.java#L42
+  failed_when: result.rc not in [0, 4]
