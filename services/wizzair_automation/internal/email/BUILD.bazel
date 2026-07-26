@@ -1,0 +1,24 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "email",
+    srcs = ["email.go"],
+    importpath = "avm99963-monorepo/services/wizzair_automation/internal/email",
+    visibility = ["//services/wizzair_automation:__subpackages__"],
+    deps = [
+        "//services/wizzair_automation/internal/parser",
+        "@com_github_emersion_go_imap_v2//:go-imap",
+        "@com_github_emersion_go_imap_v2//imapclient",
+        "@com_github_emersion_go_message//mail",
+    ],
+)
+
+go_test(
+    name = "email_test",
+    srcs = ["email_test.go"],
+    data = ["//services/wizzair_automation/fixtures/sample_emails"],
+    embed = [":email"],
+    deps = [
+        "//services/wizzair_automation/internal/parser",
+    ],
+)

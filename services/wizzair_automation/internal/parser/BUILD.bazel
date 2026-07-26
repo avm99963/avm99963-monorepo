@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "parser",
+    srcs = ["parser.go"],
+    importpath = "avm99963-monorepo/services/wizzair_automation/internal/parser",
+    visibility = ["//services/wizzair_automation:__subpackages__"],
+    deps = [
+        "//services/wizzair_automation/internal/timezone",
+    ],
+)
+
+go_test(
+    name = "parser_test",
+    size = "small",
+    srcs = ["parser_test.go"],
+    data = ["//services/wizzair_automation/fixtures/sample_emails"],
+    embed = [":parser"],
+    deps = [
+        "//services/wizzair_automation/internal/timezone",
+    ],
+)

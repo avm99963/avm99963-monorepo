@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "schedule",
+    srcs = ["schedule.go"],
+    importpath = "avm99963-monorepo/services/wizzair_automation/internal/schedule",
+    visibility = ["//services/wizzair_automation:__subpackages__"],
+)
+
+go_test(
+    name = "schedule_test",
+    srcs = ["schedule_test.go"],
+    embed = [":schedule"],
+)

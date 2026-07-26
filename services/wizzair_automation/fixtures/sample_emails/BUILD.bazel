@@ -1,0 +1,5 @@
+filegroup(
+    name = "sample_emails",
+    srcs = glob(["*.html"]),
+    visibility = ["//services/wizzair_automation:__subpackages__"],
+)

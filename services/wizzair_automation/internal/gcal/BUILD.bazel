@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "gcal",
+    srcs = ["gcal.go"],
+    importpath = "avm99963-monorepo/services/wizzair_automation/internal/gcal",
+    visibility = ["//services/wizzair_automation:__subpackages__"],
+    deps = [
+        "//services/wizzair_automation/internal/parser",
+        "@org_golang_google_api//calendar/v3:calendar",
+        "@org_golang_google_api//option",
+    ],
+)
+
+go_test(
+    name = "gcal_test",
+    srcs = ["gcal_test.go"],
+    embed = [":gcal"],
+    deps = [
+        "//services/wizzair_automation/internal/parser",
+    ],
+)

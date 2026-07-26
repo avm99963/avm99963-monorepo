@@ -1,5 +1,9 @@
+load("@gazelle//:def.bzl", "gazelle")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//:renovate/package_json.bzl", renovate_bin = "bin")
+
+# gazelle:prefix avm99963-monorepo
+gazelle(name = "gazelle")
 
 npm_link_all_packages()
 

@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "caldav",
+    srcs = ["caldav.go"],
+    importpath = "avm99963-monorepo/services/wizzair_automation/internal/caldav",
+    visibility = ["//services/wizzair_automation:__subpackages__"],
+    deps = [
+        "//services/wizzair_automation/internal/parser",
+        "//services/wizzair_automation/internal/schedule",
+    ],
+)
+
+go_test(
+    name = "caldav_test",
+    srcs = ["caldav_test.go"],
+    embed = [":caldav"],
+    deps = [
+        "//services/wizzair_automation/internal/parser",
+        "//services/wizzair_automation/internal/schedule",
+    ],
+)

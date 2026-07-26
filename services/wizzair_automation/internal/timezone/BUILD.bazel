@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "timezone",
+    srcs = ["timezone.go"],
+    importpath = "avm99963-monorepo/services/wizzair_automation/internal/timezone",
+    visibility = ["//services/wizzair_automation:__subpackages__"],
+)
+
+go_test(
+    name = "timezone_test",
+    srcs = ["timezone_test.go"],
+    deps = [":timezone"],
+)

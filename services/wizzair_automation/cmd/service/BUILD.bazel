@@ -1,0 +1,103 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+load("@rules_img//img:image.bzl", "image_index", "image_manifest")
+load("@rules_img//img:layer.bzl", "layer_from_tar")
+load("@rules_img//img:load.bzl", "image_load")
+load("@rules_img//img:push.bzl", "image_push")
+load("@rules_multirun//:defs.bzl", "multirun")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+
+go_library(
+    name = "service_lib",
+    srcs = ["main.go"],
+    importpath = "avm99963-monorepo/services/wizzair_automation/cmd/service",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//services/wizzair_automation/internal/caldav",
+        "//services/wizzair_automation/internal/email",
+        "//services/wizzair_automation/internal/gcal",
+        "//services/wizzair_automation/internal/schedule",
+    ],
+)
+
+go_binary(
+    name = "service",
+    embed = [":service_lib"],
+    visibility = ["//visibility:public"],
+)
+
+pkg_tar(
+    name = "service_tar",
+    srcs = [":service"],
+    mode = "0755",
+    owner = "0.0",
+    package_dir = "/",
+)
+
+layer_from_tar(
+    name = "service_layer",
+    src = ":service_tar",
+)
+
+image_manifest(
+    name = "image",
+    base = "@distroless_base",
+    entrypoint = ["/service"],
+    layers = [":service_layer"],
+)
+
+image_index(
+    name = "server",
+    annotations = {
+        "org.opencontainers.image.title": "wizzair_automation",
+        "org.opencontainers.image.description": "Container image for my Wizz Air automation.",
+        "org.opencontainers.image.source": "https://gerrit.avm99963.com/plugins/gitiles/avm99963-monorepo/+/HEAD/services/wizzair_automation",
+        "org.opencontainers.image.authors": "Adrià Vilanova Martínez (avm99963)",
+        "org.opencontainers.image.version": "{{if .STABLE_REVISION}}v0.0.{{.STABLE_REVISION}}{{else}}{{end}}",
+        "org.opencontainers.image.revision": "{{if and .STABLE_GIT_COMMIT (eq .STABLE_GIT_DIRTY \"clean\")}}{{.STABLE_GIT_COMMIT}}{{else}}{{end}}",
+        "org.opencontainers.image.created": "{{if .FORMATTED_DATE_RFC3339}}{{.FORMATTED_DATE_RFC3339}}{{end}}",
+    },
+    manifests = [":image"],
+    platforms = [
+        "//tools/platforms:linux_amd64",
+        "//tools/platforms:linux_arm64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+image_push(
+    name = "push_private",
+    image = ":server",
+    registry = "docker-registry.corp.avm99963.com",
+    repository = "wizzair-automation",
+    stamp = "enabled",
+    tag_list = [
+        "latest",
+        "{{if .STABLE_REVISION}}v0.0.{{.STABLE_REVISION}}{{else}}{{end}}",
+    ],
+)
+
+image_push(
+    name = "push_ghcr",
+    image = ":server",
+    registry = "ghcr.io",
+    repository = "avm99963/wizzair-automation",
+    stamp = "enabled",
+    tag_list = [
+        "latest",
+        "{{if .STABLE_REVISION}}v0.0.{{.STABLE_REVISION}}{{else}}{{end}}",
+    ],
+)
+
+multirun(
+    name = "push_all",
+    commands = [
+        ":push_private",
+        ":push_ghcr",
+    ],
+)
+
+image_load(
+    name = "load_image",
+    image = ":image",
+    tag = "wizzair-automation:latest",
+)
