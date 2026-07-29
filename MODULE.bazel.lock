@@ -20,8 +20,8 @@
     "https://bcr.bazel.build/modules/apple_support/1.21.1/MODULE.bazel": "5809fa3efab15d1f3c3c635af6974044bac8a4919c62238cce06acee8a8c11f1",
     "https://bcr.bazel.build/modules/apple_support/1.24.2/MODULE.bazel": "0e62471818affb9f0b26f128831d5c40b074d32e6dda5a0d3852847215a41ca4",
     "https://bcr.bazel.build/modules/apple_support/1.24.2/source.json": "2c22c9827093250406c5568da6c54e6fdf0ef06238def3d99c71b12feb057a8d",
-    "https://bcr.bazel.build/modules/aspect_rules_js/3.3.0/MODULE.bazel": "42ef593509e813482063e09f05be1f8690722dc8bc39f1f4ae4c0944aa7e33da",
-    "https://bcr.bazel.build/modules/aspect_rules_js/3.3.0/source.json": "7503ad32423dc3d293f8563e2faa026cb850ca9f45b368b6959ee2fdf359ac28",
+    "https://bcr.bazel.build/modules/aspect_rules_js/3.3.1/MODULE.bazel": "3e02b51b503ba8dda69b043290f6cc11add9aeb8db0bf1f6c861c396c7ddc5b2",
+    "https://bcr.bazel.build/modules/aspect_rules_js/3.3.1/source.json": "d5e0736539b00bdd33015bb336877ad5a4d16f1d1d4af13ffeade395106cabd7",
     "https://bcr.bazel.build/modules/aspect_tools_telemetry/0.4.2/MODULE.bazel": "f31aa84151d31e98cffd43eb7217ccff5ec52bdd5f2d10db8f053aeb23342eca",
     "https://bcr.bazel.build/modules/aspect_tools_telemetry/0.4.2/source.json": "d027d264e6b6e7fc421e38189f4374fcd14a67e0bd6e0e705de8c2185c3787e1",
     "https://bcr.bazel.build/modules/bazel_features/1.0.0/MODULE.bazel": "d7f022dc887efb96e1ee51cec7b2e48d41e36ff59a6e4f216c40e4029e1585bf",
@@ -49,6 +49,7 @@
     "https://bcr.bazel.build/modules/bazel_features/1.9.1/MODULE.bazel": "8f679097876a9b609ad1f60249c49d68bfab783dd9be012faf9d82547b14815a",
     "https://bcr.bazel.build/modules/bazel_lib/3.0.0-rc.0/MODULE.bazel": "d6e00979a98ac14ada5e31c8794708b41434d461e7e7ca39b59b765e6d233b18",
     "https://bcr.bazel.build/modules/bazel_lib/3.0.0/MODULE.bazel": "22b70b80ac89ad3f3772526cd9feee2fa412c2b01933fea7ed13238a448d370d",
+    "https://bcr.bazel.build/modules/bazel_lib/3.2.2/MODULE.bazel": "e2c890c8a515d6bca9c66d47718aa9e44b458fde64ec7204b8030bf2d349058c",
     "https://bcr.bazel.build/modules/bazel_lib/3.5.0/MODULE.bazel": "1eba0ba67d418d99fb682c36147a9e1725abbc8fc25544be64702e32eda2be29",
     "https://bcr.bazel.build/modules/bazel_lib/3.5.0/source.json": "98d49ec7e2b15298c990f09ec8cdea8d4788c2885497aa9cbb0a74e36e994df8",
     "https://bcr.bazel.build/modules/bazel_skylib/1.0.3/MODULE.bazel": "bcb0fd896384802d1ad283b4e4eb4d718eebd8cb820b0a2c3a347fb971afd9d8",
@@ -241,7 +242,7 @@
     "@@aspect_tools_telemetry+//:extension.bzl%telemetry": {
       "general": {
         "bzlTransitiveDigest": "4w9RM0xjdKo1crk5zL20a/TuhqO0P1z1LsuXDneBXD4=",
-        "usagesDigest": "/zDmkBaw3Nug3pAJD6dNocoIxyagrOZyI7/VVZWwT8Y=",
+        "usagesDigest": "m8dXZrMN0VqTKy0ZLlilAVRCApt0vip+Q9OJ2qxp+4Y=",
         "recordedInputs": [
           "REPO_MAPPING:aspect_tools_telemetry+,bazel_lib bazel_lib+",
           "REPO_MAPPING:aspect_tools_telemetry+,bazel_skylib bazel_skylib+",
@@ -252,7 +253,7 @@
             "repoRuleId": "@@aspect_tools_telemetry+//:extension.bzl%tel_repository",
             "attributes": {
               "deps": {
-                "aspect_rules_js": "3.3.0",
+                "aspect_rules_js": "3.3.1",
                 "aspect_tools_telemetry": "0.4.2"
               },
               "last_notice": 1
@@ -325,7 +326,7 @@
     "@@rules_nodejs+//nodejs:extensions.bzl%node": {
       "general": {
         "bzlTransitiveDigest": "4pUxCNc22K4I+6+4Nxu52Hur12tFRfa1JMsN5mdDv60=",
-        "usagesDigest": "Bhe434XdEwI/HGSDUpBB/o7miufZAH6KKG9JHsAYgsE=",
+        "usagesDigest": "C3GUXi3C3bEZriy2l7x8XV7hGfxqsSg9SRIrPbj9Tuk=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
           "nodejs_linux_amd64": {
@@ -654,7 +655,7 @@
     "@@yq.bzl+//yq:extensions.bzl%yq": {
       "general": {
         "bzlTransitiveDigest": "tDqk+ntWTdxNAWPDjRY1uITgHbti2jcXR5ZdinltBs0=",
-        "usagesDigest": "ZEGSQ3Wx6GX31P9GorH9Yez8ENWgEZhGHmeTHI3pma0=",
+        "usagesDigest": "TokYw52cQXFoHbkRVQ1/cGl6/iV0HgtsP+98HS9NRNQ=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
           "yq_darwin_amd64": {
