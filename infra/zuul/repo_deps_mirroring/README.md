@@ -23,8 +23,8 @@ bazel run //infra/zuul/repo_deps_mirroring:mirror -- WORKFLOW_NAME --init-histor
 
 ## Running a migration
 
-Migrations (mirroring) will run automatically in CI in the future. However, it
-can also be manually run:
+Migrations (mirroring) run automatically in CI. However, it can also be
+manually run:
 
 ```bash
 bazel run //infra/zuul/repo_deps_mirroring:mirror -- WORKFLOW_NAME
