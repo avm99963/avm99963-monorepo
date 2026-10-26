@@ -5,7 +5,7 @@ go 1.26.5
 require (
 	github.com/emersion/go-imap/v2 v2.0.0-beta.8
 	github.com/emersion/go-message v0.18.2
-	google.golang.org/api v0.308.0
+	google.golang.org/api v0.309.0
 )
 
 require (
